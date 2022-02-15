@@ -91,6 +91,7 @@ namespace MotorcyclesSchedule
             this.btmPlus.Text = "+";
             this.btmPlus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btmPlus.UseVisualStyleBackColor = true;
+            this.btmPlus.Click += new System.EventHandler(this.btmPlus_Click);
             // 
             // btmMinus
             // 
@@ -102,6 +103,7 @@ namespace MotorcyclesSchedule
             this.btmMinus.Text = "-";
             this.btmMinus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btmMinus.UseVisualStyleBackColor = true;
+            this.btmMinus.Click += new System.EventHandler(this.btmMinus_Click);
             // 
             // Form1
             // 

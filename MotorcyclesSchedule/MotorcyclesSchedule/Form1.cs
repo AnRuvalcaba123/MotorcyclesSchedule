@@ -14,6 +14,7 @@ namespace MotorcyclesSchedule
     {
         public List<Schedule> list = new List<Schedule>();
 
+
         public Form1()
         {
             InitializeComponent();
@@ -23,14 +24,29 @@ namespace MotorcyclesSchedule
         {
             Schedule obj = cB1.SelectedItem as Schedule;
             lbl1.Text = obj.Rides.ToString();
+            btmPlus.Enabled = false;
             if (obj.Rides == 8)
             {
                 btmPlus.Enabled = false;
-            }
-            if (obj.Rides >= 8)
-            {
+                btmMinus.Enabled = true;
                 lbl1.BackColor = Color.Green;
+                lbl1.Text = obj.Rides.ToString();
             }
+            if(obj.Rides <= 8)
+            {
+                btmPlus.Enabled = true;
+                btmMinus.Enabled = true;
+                lbl1.BackColor = Color.Green;
+                lbl1.Text = obj.Rides.ToString();
+            }
+            if(obj.Rides == 0)
+            {
+                btmPlus.Enabled = true;
+                btmMinus.Enabled = false;
+                lbl1.BackColor = Color.Red;
+                lbl1.Text = obj.Rides.ToString();
+            }
+
 
         }
 
@@ -64,6 +80,57 @@ namespace MotorcyclesSchedule
             cB1.DataSource = list;
             cB1.DisplayMember = "Time";
             cB1.DropDownStyle = ComboBoxStyle.DropDownList;
+            btmPlus.Enabled = false;
+        }
+
+        private void btmMinus_Click(object sender, EventArgs e)
+        {
+            Schedule obj = cB1.SelectedItem as Schedule;
+            if (obj.Rides <= 8)
+            {
+                btmPlus.Enabled = true;
+                btmMinus.Enabled = true;
+                lbl1.BackColor = Color.Green;
+                obj.Rides--;
+                lbl1.Text = obj.Rides.ToString();
+                if(obj.Rides == 8)
+                {
+                    btmPlus.Enabled = false;
+                } 
+            }
+            if (obj.Rides == 0)
+            {
+                btmPlus.Enabled = true;
+                btmMinus.Enabled = false;
+                lbl1.BackColor = Color.Red;
+                lbl1.Text = obj.Rides.ToString();
+            }
+
+        }
+
+        private void btmPlus_Click(object sender, EventArgs e)
+        {
+            Schedule obj = cB1.SelectedItem as Schedule;
+            if (obj.Rides == 8)
+            {
+                btmPlus.Enabled = false;
+                btmMinus.Enabled = true;
+                lbl1.BackColor = Color.Green;
+                lbl1.Text = obj.Rides.ToString();
+            }
+            if (obj.Rides >= 0 && obj.Rides < 8)
+            {
+                btmPlus.Enabled = true;
+                btmMinus.Enabled = true;
+                obj.Rides++;
+                lbl1.BackColor = Color.Green;
+                lbl1.Text = obj.Rides.ToString();
+                if(obj.Rides == 0)
+                {
+                    btmMinus.Enabled = false;
+                    lbl1.BackColor = Color.Red;
+                }
+            }
         }
     }
 }
